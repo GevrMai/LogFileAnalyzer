@@ -2,7 +2,7 @@
 
 namespace LogFileAnalyzer.Services
 {
-    internal static class Encryptor
+    public static class Encryptor
     {
         public static void EncryptMail(ref string fileContent, ref DirectoryInfo directory, string fileName)
         {
@@ -18,6 +18,8 @@ namespace LogFileAnalyzer.Services
                     result.AppendLine(line);
             }
 
+            // Удаление \n
+            result.Remove(result.Length - 1, 1);
             FileManager.RewriteFile(ref directory, ref fileName, result);
         }
         private static void EncryptMailInLine(string line, StringBuilder result)

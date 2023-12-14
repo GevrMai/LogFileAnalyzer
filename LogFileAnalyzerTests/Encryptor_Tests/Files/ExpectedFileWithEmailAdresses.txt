@@ -1,0 +1,6 @@
+[12.11.0654 17:57:25.246][Warning][Unauthorized] ERROR MESSAGE
+[13.11.0654 17:57:25.519][Critical][PageNotFound] *l*x*n*e*@gmail.com MESSAGE
+[14.11.0654 17:57:25.521][Error][StackOverFlow] ERROR MESSAGE
+[15.11.0654 17:57:25.584][Critical][BadInput] *l*d@bk.ru DATA
+[16.11.0654 17:57:25.902][Warning][StackOverFlow] ERROR MESSAGE
+[17.11.0654 17:57:25.840][Error][BadInput] BIG ERROR *o*o*y*1*9*@mail.ru VERY BIG

@@ -1,10 +1,10 @@
-﻿using LogFileAnalyzer.Models.Interfaces;
+﻿using LogFileAnalyzer.Services.Interfaces;
 
-namespace LogFileAnalyzer.Models
+namespace LogFileAnalyzer.Services
 {
     class Logger : ILogger
     {
-        private string LogFilePath => $"{Environment.CurrentDirectory}/logs.log";
+        private static string LogFilePath => $"{Environment.CurrentDirectory}/logs.log";
 
         public void Log(string message)
         {

@@ -1,8 +1,9 @@
-﻿using LogFileAnalyzer.Models.Interfaces;
+﻿using LogFileAnalyzer.Models;
+using LogFileAnalyzer.Services.Interfaces;
 using System.Collections.Concurrent;
 using System.Text;
 
-namespace LogFileAnalyzer.Models
+namespace LogFileAnalyzer.Services
 {
     internal class Analyzer : IAnalyzer
     {
@@ -29,7 +30,7 @@ namespace LogFileAnalyzer.Models
                 }
 
                 var currentGuid = GenerateGuid();
-                
+
                 var userInputData = new DirectoryPathAndService(userInput[0], userInput[1]);    // сохраняем название сервиса, путь запроса
 
                 // поиск сервисов, для которых необходимо сделать отчет
@@ -62,22 +63,22 @@ namespace LogFileAnalyzer.Models
                     task.Start();
                     task.Wait();
                 }
-                SyncConsole.WriteLine(resultReport.ToString());
+                Console.WriteLine(resultReport.ToString());
                 WriteReportToFile(resultReport, currentGuid);
             });
             requestTask.Start();
         }
         private static void WriteReportToFile(StringBuilder reportText, Guid currentGuid)
         {
-            using StreamWriter writer = new ($"{Environment.CurrentDirectory}\\Reports\\Report {currentGuid}.txt");
-                writer.Write(reportText.ToString());
+            using StreamWriter writer = new($"{Environment.CurrentDirectory}\\Reports\\Report {currentGuid}.txt");
+            writer.Write(reportText.ToString());
         }
 
         private Guid GenerateGuid()
         {
             var currentGuid = Guid.NewGuid();       // даем запросу свой guid
             requestGuids.TryAdd(currentGuid, "Не выполнен");
-            SyncConsole.WriteLine($"Запросу выдан guid:\t{currentGuid}\n");
+            Console.WriteLine($"Запросу выдан guid:\t{currentGuid}\n");
 
             return currentGuid;
         }
@@ -87,16 +88,16 @@ namespace LogFileAnalyzer.Models
         {
             if (userInput.Length > 2)               // неверное количество аргументов
             {
-                SyncConsole.WriteLine("Введено слишком много аргументов");
+                Console.WriteLine("Введено слишком много аргументов");
                 return false;
             }
 
             if (userInput.Length == 1 && Guid.TryParse(userInput[0], out Guid parsedGuid))    // пользователем введен guid для уточнения статуса запроса
             {
                 if (requestGuids.ContainsKey(parsedGuid))
-                    SyncConsole.WriteLine($"Статус запроса: {requestGuids[parsedGuid]}\nВведите следующую инструкцию:\n");
+                    Console.WriteLine($"Статус запроса: {requestGuids[parsedGuid]}\nВведите следующую инструкцию:\n");
                 else
-                    SyncConsole.WriteLine($"Запроса {parsedGuid} не существует");
+                    Console.WriteLine($"Запроса {parsedGuid} не существует");
 
                 return false;
             }
@@ -104,14 +105,15 @@ namespace LogFileAnalyzer.Models
             {
                 foreach (var request in requestGuids)
                 {
-                    SyncConsole.WriteLine($"guid:\t{request.Key}, status:\t{request.Value}");
+                    Console.WriteLine($"guid:\t{request.Key}, status:\t{request.Value}");
                 }
-                SyncConsole.WriteLine();
+
+                Console.WriteLine();
                 return false;
             }
             else if (userInput.Length == 1 && userInput[0] != "exit")                // запрос пользователя не может состоять из 1 аргумента, кроме запроса guid
             {
-                SyncConsole.WriteLine("Введено некорректное значение");
+                Console.WriteLine("Введено некорректное значение");
                 return false;
             }
 

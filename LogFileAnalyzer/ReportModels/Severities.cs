@@ -1,4 +1,5 @@
 ﻿using LogFileAnalyzer.Models.Interfaces;
+using LogFileAnalyzer.Services;
 using System.Text;
 using System.Text.RegularExpressions;
 

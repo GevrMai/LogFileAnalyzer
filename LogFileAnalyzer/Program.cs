@@ -1,8 +1,8 @@
 ﻿// Яценко Александр Владимирович
 // alexander.iatsenko@gmail.com
 
-using LogFileAnalyzer.Models;
-using LogFileAnalyzer.Models.Interfaces;
+using LogFileAnalyzer.Services;
+using LogFileAnalyzer.Services.Interfaces;
 
 namespace LogFileAnalyzer
 {

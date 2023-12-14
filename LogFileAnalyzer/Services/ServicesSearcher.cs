@@ -1,11 +1,10 @@
-﻿using LogFileAnalyzer.Models.Interfaces;
+﻿using LogFileAnalyzer.Services.Interfaces;
 
-namespace LogFileAnalyzer.Models
+namespace LogFileAnalyzer.Services
 {
     public class ServicesSearcher
     {
         private static readonly ILogger logger = new Logger();
-
 
         // Метод возвращает названия сервисов, для которых нужно сделать отчет (например, если первым параметром в качестве имени сервиса подается 'ser',
         // то подходящими сервисами для составления отчета будут 'service' и 'serv')
@@ -34,14 +33,14 @@ namespace LogFileAnalyzer.Models
 
                 return suitableServices;
             }
-            catch(DirectoryNotFoundException ex)
+            catch (DirectoryNotFoundException ex)
             {
-                SyncConsole.WriteLine($"{ex.Message}\n");
+                Console.WriteLine($"{ex.Message}\n");
                 logger.Log(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                SyncConsole.WriteLine($"{ex.Message}\n");
+                Console.WriteLine($"{ex.Message}\n");
                 logger.Log(ex.Message);
             }
             return null;

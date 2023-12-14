@@ -1,4 +1,6 @@
 ﻿using LogFileAnalyzer.Models.Interfaces;
+using LogFileAnalyzer.Services;
+using LogFileAnalyzer.Services.Interfaces;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -14,7 +16,6 @@ namespace LogFileAnalyzer.Models
         private int RotationsCount { get; set; }
 
         private readonly string path;
-        private readonly IEncryptor encryptor;
         private readonly ILogger logger;
 
         public Report(string serviceName, string path)
@@ -24,7 +25,6 @@ namespace LogFileAnalyzer.Models
 
             SeveritiesStats = new Severities();
             CategoriesStats = new Category();
-            encryptor = new Encryptor();
             logger = new Logger();
         }
 
@@ -43,7 +43,7 @@ namespace LogFileAnalyzer.Models
                     if (ServiceName != splittedFileName.First())
                         continue;
 
-                    var fileContent = File.ReadAllText($"{path}\\{file.Name}");
+                    var fileContent = FileManager.ReadFileContent(path, file.Name);
 
                     // Определяем количество ротаций
                     CountRotation(ref splittedFileName[1]);
@@ -51,7 +51,7 @@ namespace LogFileAnalyzer.Models
                     CountSeveritiesStats(ref fileContent);
                     CountCategoriesStats(ref fileContent);
 
-                    encryptor.EncryptMail(ref fileContent, ref directory, file.Name);
+                    Encryptor.EncryptMail(ref fileContent, ref directory, file.Name);
                 }
 
                 return new StringBuilder().AppendLine($"Отчет о сервисе '{ServiceName} по пути '{path}':")

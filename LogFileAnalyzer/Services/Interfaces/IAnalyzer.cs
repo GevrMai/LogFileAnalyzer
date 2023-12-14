@@ -1,4 +1,4 @@
-﻿namespace LogFileAnalyzer.Models.Interfaces
+﻿namespace LogFileAnalyzer.Services.Interfaces
 {
     interface IAnalyzer
     {

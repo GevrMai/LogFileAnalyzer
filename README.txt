@@ -1,7 +1,7 @@
 Программа делает анализ .log файлов и печатает результат отчета в .txt файлю.
 Пример .log, для которых надо сделать анализ и содержимое самих файлов:
 
-![Пример .log файлов в директории](https://github.com/GevrMai/LogFileAnalyzer/blob/master/ImagesReadme/FileExample%20in%20directory.png)
+![Image](https://github.com/GevrMai/LogFileAnalyzer/blob/master/ImagesReadme/FileExample%20in%20directory.png)
 
 - Реализовал три дополнительные подпункта
 - В папке *path*\LogFileAnalyzer\bin\Debug\net7.0 есть файл с логами программы logs.log

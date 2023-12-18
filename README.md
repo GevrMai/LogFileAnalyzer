@@ -18,5 +18,5 @@
 ![image](https://github.com/GevrMai/LogFileAnalyzer/blob/master/ImagesReadme/ReportExample%20in%20directory.png)
 
 Реализован неблокирующий вызов: для каждого запроса создается отдельный Task (Так же создается и для каждого сервиса в запросе)
-Используется примитив синхронизации - Monitor для корректной работы с файлами
-Если в .log файле есть email адресс, то он шифруется: alexander@mail.ru -> *l*x*n*e*@,ail.ru
+Используется примитив синхронизации - Monitor для корректной работы с файлами. Есть возможность посмотреть статус запроса командой 'status'
+Если в .log файле есть email адресс, то он шифруется: alexander@mail.ru -> _l_x_n_e_@mail.ru
